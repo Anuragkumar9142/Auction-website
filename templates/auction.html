@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ auction.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ auction.title }}</h1>
+        <a href="{{ url_for('index') }}">Back to Auctions</a>
+    </header>
+
+    <section>
+        <h2>Description</h2>
+        <p>{{ auction.description }}</p>
+        <p>Starting Price: ${{ auction.starting_price }}</p>
+        <p>Current Bid: ${{ auction.current_bid }}</p>
+
+        <h3>Place a Bid</h3>
+        <form method="POST">
+            <label for="bid_amount">Bid Amount: $</label>
+            <input type="number" name="bid_amount" step="0.01" min="{{ auction.current_bid + 0.01 }}" required>
+            <button type="submit">Place Bid</button>
+        </form>
+    </section>
+</body>
+</html>
